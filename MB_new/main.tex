@@ -1,0 +1,208 @@
+\documentclass{beamer}
+\usetheme{Boadilla}
+\usepackage[utf8]{inputenc}
+%\usepackage[backref=page]{hyperref}
+% https://www.principiae.be/
+\title{Federal Reserve Bank Monetary Policy - forecasting the Federal Funds rate}
+\subtitle{Using Beamer}
+\author{Nancy Hammond }
+\institute{University of Chicago}
+\date{June 2022}
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+%
+\section{Section 1}
+\subsection{sub a}
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+%
+
+\begin{frame}
+\frametitle{Surveys, macro economic data}
+Clarida Policy makers should consult many sources of information about neutral real interest rates and expected inflation, to name just two key macro-
+economic variables. Because macroeconomic models of $r^\ast$ and long-term inflation expectations are potentially misspecified, seeking out other sources of information that are not derived from the
+same models can be especially useful. 
+\begin{itemize}
+    \item Interest rate futures and interest rate swaps markets
+    \item Yield curves
+\end{itemize}
+\begin{itemize}
+    \item Survey data 
+    \item Federal Reserve surveys on a range of macro-economic and financial conditions
+       \begin{itemize}
+       \item Senior Loan Officer Opinion Survey on Bank Lending Practices
+       \item Senior Credit Officer Opinion Survey on Dealer Financing Term
+       \item Dis-aggregated and high-frequency economic data
+       \end{itemize}
+\end{itemize}
+The Federal Reserve uses survey data and conducts surveys of its own on a range of macro-economic and financial conditions. Among the surveys the Fed conducts are the Senior Loan Officer Opinion Survey on Bank Lending Practices and the Senior Credit Officer Opinion Survey on Dealer Financing Terms. Staff at the Federal Reserve Board also use
+dis-aggregated and high-frequency data to estimate the state of the economy in real time. Such data include dis-aggregated labor market data from ADP and data on expenditures from credit card transactions.
+\end{frame}
+
+\begin{frame}
+\frametitle{Financial markets}
+Financial market signals are inevitably noisy, and day-to-day movements in asset prices are unlikely to tell us much about the cyclical or structural position of the economy. However, persistent shifts in financial market conditions can be informative, and signals derived from financial market data—along with surveys of households, firms, and market participants, data, as well as outside forecasts—can be an important complement to estimates obtained from historically estimated and calibrated macroeconomic models.
+\begin{itemize}
+    \item Interest rate futures and interest rate swaps markets
+    \item Yield curves
+    \item TIPS
+\end{itemize}
+Interest rate futures and interest rate swaps markets provide one source of high-frequency information about the path and destination for the federal funds rate expected by market participants (figure 1.3). Interest rate option markets, under certain assumptions, can offer insights about the entire ex ante probability distribution of policy rate outcomes for calendar dates near or far into
+the future (figure 1.4). And, indeed, when one reads that a future policy decision by the Fed or any central bank is “fully priced in,” this is usually based on a “straight read” of futures and options
+prices. But these signals from interest rate derivatives markets are only a pure measure of the expected policy rate path under the assumption of a zero risk premium. For this reason, it is useful to compare policy rate paths derived from market prices with the path obtained from surveys of market participants, which, while subject to measurement error, should not be contaminated with a term premium.
+
+The Treasury yield curve can provide another source of information about the expected path and ultimate longer-run destination of the policy rate. But the yield curve, like the interest rate futures strip, reflects not only expectations of the path of short-term interest rates but also liquidity and term premium factors. Thus, to extract signal about policy from noise in the yield curve, a term structure model is required.
+\end{frame}
+%
+\begin{frame}
+\frametitle{Interest rate futures and interest rate swaps markets pdf of Fed Funds rate Lilley and Rogoff}
+Interest rate futures and interest rate swaps markets provide one source of high-frequency information about the path and destination for the federal funds rate expected by market participants 
+
+p 59 Lilley ad Rogoff FIGURE 2.2. Market-Implied Probability of Negative Rates by End of Each Calendar Year
+Note: Market-implied probabilities of three-month LIBOR (USD) rates setting below -0.25 percent at December 15 of 2018 through 2021. Market-implied probabilities are derived from options prices on the Eurodollar futures with strikes of 100.25 and 100.5, which
+correspond to LIBOR rates of -25 bps and -50 bps, respectively. Probabilities are lower bounds and are estimated assuming risk neutrality, averaged over the preceding month. Eurodollar option price data from Bloomberg. 
+
+See appendix for details.
+\end{frame}
+
+\begin{frame}
+\frametitle{BOUNDING RISK-NEUTRAL PROBABILITIES FROM THE MARKET PRICES OF OPTIONS}
+We outline the process we use to infer risk-neutral probabilities
+from the market prices of various options. We first describe the
+process in general, since all probabilities in the paper are constructed in this manner. For parsimony, we assume a discount rate of zero in this explanation.
+
+Consider the payoff of a call option over an asset with an underlying price of x, where the option has a strike of k. The payoff of the option at the exercise date has the following profile, where $\alpha$ is a general scaling parameter:
+
+\begin{block}{Formula}
+    \begin{equation}
+    \Pi(x)=
+    \begin{cases}
+      \alpha x-k  & \text{if $k<x$}\\
+      0 & \text{if $x \leq k$}
+    \end{cases}
+    \end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}
+We can then construct a synthetic option that combines buying
+a call with a strike of $k_2$ and selling a call with a strike of $k_1$ on the same underlying asset, where $k_1> k_2$. The payoff function of such a synthetic option follows:
+
+\begin{block}{Formula}
+    \begin{equation}   
+    \Pi(x) =\alpha (k_1-k_2) 
+    \begin{cases}
+       1 & \text{if $k_1<x$}\\
+       \frac{x-k_2}{k_1-k_2} & \text{if $k_2<x<k_1$}\\
+       0 & \text{if $x\leq k_2$}
+    \end{cases}
+    \end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{The risk-neutral valuation (V) of the synthetic option}
+The risk-neutral valuation V of this synthetic option is therefore given by $V=\int_a^b pdf(x) \Pi(x) dx$. 
+\begin{block}{Formula}
+    \begin{equation}   
+            V = \int_a^b pdf(x) \Pi(x) dx
+           = \int_{k_2}^{\inf} pdf(x) \Pi(x) dx
+            \leq \int_{k_2}^{\inf} pdf(x) \alpha(k_1-k_2) dx
+ \end{equation}
+ \end{block}
+%→
+We do not observe the value of this synthetic option directly since it is not traded, but we can infer it from the market price of the call option with strike $k_2$ minus the price of the call option with strike $k_1$. We then use this valuation to provide a lower bound on the probability that $x > k_2$  under the assumption of risk neutrality.
+\begin{block}{Formula}
+   \begin{equation}  
+\frac{V}{\alpha(k_1-k_2)} \leq \int_{k_2}^{\inf} pdf(x) dx
+% Pr(x >k_2)
+% !##"##
+    \end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}
+Therefore, we can use this general formula to provide a lower
+bound on the probability of interest rates being below -0.25$\%$, so long as we can observe the market price of an option with a strike for the relevant event, and a second option that has a higher strike.
+
+The second option is necessary since there are an infinite number of combinations of outcomes and probabilities that would be
+consistent with one option price, but a second option price limits
+this space to at least a single lower bound.
+\end{frame}
+
+\begin{frame}
+Quotes from the Treasury Inflation-Protected Securities (TIPS) market can provide valuable information about two key inputs to monetary policy analysis: long-run $r^\ast$ and expected inflation. Direct reads of TIPS spot rates and forward rates are
+signals of the levels of real interest rates that investors expect at various horizons, and they can be used to complement model-based estimates of $r^\ast$ . In addition, TIPS market data, together with nominal Treasury yields, can be used to construct measures
+of “breakeven inflation” or inflation compensation that provide a noisy signal of market expectations of future inflation. 
+
+Again, a straight read of breakeven inflation needs to be augmented with a model to filter out the liquidity and risk premium components that place a wedge between inflation compensation and expected inflation.
+\end{frame}
+
+\verb|\sffamily|: \sffamily CM Sans serif
+\begin{frame}
+\frametitle{The Fed's floor system, ample reserves}{\vspace*{-10mm}}
+The Fed operates a floor system with the combination of IORB, the overnight RRP facility, and the SRF. The SRF is intended as a backstop to limit upward pressure on overnight interest rates and the o/n RRP facility is intended to place a floor under overnight interest rates. 
+\bigskip
+\begin{columns}[onlytextwidth,t]
+  \begin{column}{0.48\textwidth}
+    \bf{Administered rates} 
+     %\uncover<+>{}
+    \begin{itemize} 
+    %{\normalfont}
+        \item \normalfont interest on reserve balances (IORB) 
+        \item overnight reverse repurchase agreement (o/n RRP) rate
+        \item domestic standing repurchase agreement (repo) facility (SRF)
+    \end{itemize}
+   \end{column}
+  \begin{column}{0.48\textwidth}
+    \bf{Policy rates}
+     \uncover<+>{}
+     \begin{itemize}
+        \item \normalfont effective Federal Funds rate
+     \end{itemize}
+  \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pictures}
+\begin{figure}
+%\includegraphics[scale=0.5]{lion}
+\caption{lion!!}
+\end{figure}
+<text>
+\end{frame}
+
+\begin{frame}
+\begin{table}
+\begin{tabular}{l | c | c | c | c }
+Competitor Name & Swim & Cycle & Run & Total \\
+\hline \hline
+John T & 13:04 & 24:15 & 18:34 & 55:53 \\ 
+Norman P & 8:00 & 22:45 & 23:02 & 53:47\\
+Alex K & 14:00 & 28:00 & n/a & n/a\\
+Sarah H & 9:22 & 21:10 & 24:03 & 54:35 
+\end{tabular}
+\caption{Triathlon results}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Formula}
+    calculated in this equation
+    \begin{equation}    % <--- deleted empty lines
+            Total = \frac{1}{n}*\sum_{i=0}^n (eachnode_i)
+    \end{equation}
+\end{block}
+\end{frame}
+
+\end{document}
+% \section{Introduction}
+
+
+
